@@ -1,101 +1,65 @@
-import Image from "next/image";
+import { Link } from "@/components/link";
+import React from "react";
+import { text } from "stream/consumers";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+export default async function HomePage() {
+	const links = [
+		{
+			text: "/sign-in",
+			href: "/sign-in",
+			description: () => (
+				<span>Sign in to an account (Github keys required)</span>
+			),
+		},
+		{
+			text: "/open",
+			href: "/open?exampleString=Hello%20world%20from%20server",
+			description: () => (
+				<span>
+					View data fetched from an open procedure. Pass data via search params.
+				</span>
+			),
+		},
+		{
+			text: "/authed",
+			href: "/authed?exampleString=Hello%20world%20from%20server",
+			description: () => (
+				<span>
+					View data fetched from an authed procedure. Pass data via search
+					params. Use{" "}
+					<span className="border bg-white font-mono ">redirect=false</span> to
+					see API error.
+				</span>
+			),
+		},
+	];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+	return (
+		<React.Fragment>
+			<div>
+				<h1 className="text-3xl font-bold">next-kit by @natedunn</h1>
+				<p className="mt-2 text-muted-foreground">
+					<span className="italic">"Measure twice, cut once"</span>{" "}
+					<span>— Mr. Miyagi or something</span>
+				</p>
+			</div>
+			<div className="mt-6 pt-4 border-t">An index of pages:</div>
+			<table className="mt-4">
+				<tbody>
+					{links.map((link) => (
+						<tr key={link.href} className="border bg-muted">
+							<td className="border-r px-5 py-3 font-mono no-wrap-cell">
+								<Link className="hover:underline" href={link.href}>
+									{link.text}
+								</Link>{" "}
+							</td>
+							<td className="text-muted-foreground px-4 py-2 text-sm">
+								{link.description()}
+							</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</React.Fragment>
+	);
 }
