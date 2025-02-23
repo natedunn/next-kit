@@ -1,19 +1,19 @@
-import { confirm } from "@inquirer/prompts";
-import { sql } from "drizzle-orm";
+import { confirm } from '@inquirer/prompts';
+import { sql } from 'drizzle-orm';
 
-import { httpDb } from "@/lib/db";
+import { httpDb } from '@/lib/db';
 
 export const truncate = async () => {
 	const answer = await confirm({
-		message: "Are you sure you want to truncate all tables?",
+		message: 'Are you sure you want to truncate all tables?',
 	});
 
 	if (!answer) {
-		console.log("❌ Truncating all tables cancelled");
+		console.log('❌ Truncating all tables cancelled');
 		process.exit(0);
 	}
 
-	console.log("⏳ Truncating tables...");
+	console.log('⏳ Truncating tables...');
 
 	const start = Date.now();
 
@@ -32,13 +32,13 @@ export const truncate = async () => {
 
 	const end = Date.now();
 
-	console.log("✅ Truncating completed in", end - start, "ms");
+	console.log('✅ Truncating completed in', end - start, 'ms');
 
 	process.exit(0);
 };
 
 truncate().catch((err) => {
-	console.error("❌ Truncating failed");
+	console.error('❌ Truncating failed');
 	console.error(err);
 	process.exit(1);
 });

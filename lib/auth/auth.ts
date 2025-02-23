@@ -1,13 +1,16 @@
-import { betterAuth, Session, User } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
-import { db } from "@/lib/db";
-import { admin, username } from "better-auth/plugins";
-import { env } from "../env/server";
-import { nextCookies } from "better-auth/next-js";
-import { NextRequest } from "next/server";
-import { cache } from "react";
-import { userSchema, UserSchema } from "../db/schema/auth";
-import * as H from "next/headers";
+import type { NextRequest } from 'next/server';
+
+import { cache } from 'react';
+import { betterAuth } from 'better-auth';
+import { drizzleAdapter } from 'better-auth/adapters/drizzle';
+import { nextCookies } from 'better-auth/next-js';
+import { admin, username } from 'better-auth/plugins';
+import * as H from 'next/headers';
+
+import { db } from '@/lib/db';
+
+import { userSchema } from '../db/schema/auth';
+import { env } from '../env/server';
 
 // This is the entry point
 export const auth = betterAuth({
@@ -15,10 +18,9 @@ export const auth = betterAuth({
 		enabled: true,
 	},
 	database: drizzleAdapter(db, {
-		provider: "pg", // or "mysql", "sqlite"
+		provider: 'pg', // or "mysql", "sqlite"
 	}),
 	socialProviders: {
-		// Optional
 		github: {
 			clientId: env.GITHUB_CLIENT_ID,
 			clientSecret: env.GITHUB_CLIENT_SECRET,
@@ -27,18 +29,17 @@ export const auth = betterAuth({
 					username: profile.login,
 					email: profile.email,
 					image: profile.avatar_url,
-					role: env.ADMIN_EMAIL === profile.email ? "admin" : "user",
+					role: env.ADMIN_EMAIL === profile.email ? 'admin' : 'user',
 				};
 			},
-			// redirectURI: `${getBaseUrl()}/authed`,
 		},
 	},
-	plugins: [nextCookies(), username()],
+	plugins: [nextCookies(), admin(), username()],
 	user: {
 		additionalFields: {
 			// This purely exists to make sure the username is required
 			username: {
-				type: "string",
+				type: 'string',
 				required: true,
 				sortable: true,
 				unique: true,
@@ -53,7 +54,7 @@ export const auth = betterAuth({
 	},
 });
 
-export const getAuth = cache(async (passedHeaders?: NextRequest["headers"]) => {
+export const getAuth = cache(async (passedHeaders?: NextRequest['headers']) => {
 	const headers = passedHeaders ?? (await H.headers());
 
 	const session = await auth.api.getSession({

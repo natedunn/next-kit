@@ -1,16 +1,18 @@
-"use client";
+'use client';
 
-import { usePathname } from "next/navigation";
-import React from "react";
-import { Link } from "../link";
+import React from 'react';
+import { usePathname } from 'next/navigation';
+
+import { Link } from '../link';
+
 export const BackHome = () => {
 	const pathname = usePathname();
 	return (
 		<React.Fragment>
-			{pathname === "/" ? (
+			{pathname === '/' ? (
 				<span>👋</span>
 			) : (
-				<Link className="link-as-text" href="/">
+				<Link className='link-as-text' href='/'>
 					👈 go to index
 				</Link>
 			)}

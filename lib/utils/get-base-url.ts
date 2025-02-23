@@ -9,9 +9,9 @@ export const getBaseUrl = (
 		relativePath: true,
 	}
 ) => {
-	if (relativePath && typeof window !== "undefined") {
+	if (relativePath && typeof window !== 'undefined') {
 		// browser should use relative path
-		return "";
+		return '';
 	}
 	if (process.env.VERCEL_URL) {
 		// reference for vercel.com

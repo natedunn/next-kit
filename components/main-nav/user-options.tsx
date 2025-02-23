@@ -1,10 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
+import { createAuthClient } from 'better-auth/react';
+import { useRouter } from 'next/navigation';
 
-import { createAuthClient } from "better-auth/react";
-import { Link } from "../link";
-import { useRouter } from "next/navigation";
+import { Link } from '../link';
+
 const { signOut } = createAuthClient();
 
 export const UserOptions = ({ email }: { email?: string }) => {
@@ -14,7 +15,7 @@ export const UserOptions = ({ email }: { email?: string }) => {
 		<React.Fragment>
 			{email ? (
 				<button
-					className="link-as-text"
+					className='link-as-text'
 					onClick={async () => {
 						await signOut();
 						router.refresh();
@@ -23,7 +24,7 @@ export const UserOptions = ({ email }: { email?: string }) => {
 					Sign out ({email})
 				</button>
 			) : (
-				<Link className="link-as-text" href="/sign-in">
+				<Link className='link-as-text' href='/sign-in'>
 					Sign in
 				</Link>
 			)}

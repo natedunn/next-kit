@@ -1,3 +1,3 @@
-import { t } from "./init";
+import { t } from './init';
 
 export const router = t.router;

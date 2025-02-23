@@ -1,8 +1,8 @@
-import type { TRPCClientErrorLike } from "@trpc/client";
-import type { inferRouterInputs, inferRouterOutputs } from "@trpc/server";
+import type { TRPCClientErrorLike } from '@trpc/client';
+import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server';
 
-import { exampleRouter } from "./example";
-import { router } from "../router";
+import { router } from '../router';
+import { exampleRouter } from './example';
 
 export const appRouter = router({
 	example: exampleRouter,

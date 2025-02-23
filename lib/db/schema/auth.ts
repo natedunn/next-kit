@@ -1,12 +1,10 @@
-import type { BuildRefine } from "node_modules/drizzle-zod/schema.types.internal.d.ts";
-import type { SchemaCrud } from "../utils";
-import { z } from "zod";
-import * as auth from "../tables/auth";
-import {
-	createInsertSchema,
-	createSelectSchema,
-	createUpdateSchema,
-} from "drizzle-zod";
+import type { BuildRefine } from 'node_modules/drizzle-zod/schema.types.internal.d.ts';
+import type { SchemaCrud } from '../utils';
+
+import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
+import { z } from 'zod';
+
+import * as auth from '../tables/auth';
 
 //
 // User

@@ -1,16 +1,16 @@
-import type { AppRouter } from "@/lib/api/routers/_app";
+import type { AppRouter } from '@/lib/api/routers/_app';
 
 import {
 	createTRPCClient,
 	httpBatchLink,
 	unstable_httpBatchStreamLink as httpBatchStreamLink,
 	splitLink,
-} from "@trpc/client";
-import * as H from "next/headers";
-import superjson from "superjson";
+} from '@trpc/client';
+import * as H from 'next/headers';
+import superjson from 'superjson';
 
-import { customLoggerLink, skipStream } from "@/lib/api/utils";
-import { getBaseUrl } from "@/lib/utils/get-base-url";
+import { customLoggerLink, skipStream } from '@/lib/api/utils';
+import { getBaseUrl } from '@/lib/utils/get-base-url';
 
 const options = {
 	transformer: superjson,
@@ -18,9 +18,9 @@ const options = {
 	headers: async () => {
 		const headers = new Headers(await H.headers());
 
-		headers.delete("connection");
-		headers.delete("transfer-encoding");
-		headers.set("x-trpc-source", "server");
+		headers.delete('connection');
+		headers.delete('transfer-encoding');
+		headers.set('x-trpc-source', 'server');
 		return Object.fromEntries(headers.entries());
 	},
 };

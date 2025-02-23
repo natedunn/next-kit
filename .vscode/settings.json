@@ -1,3 +1,4 @@
 {
-	"cSpell.words": ["unauthedenticad"]
+	"cSpell.words": ["ianvs", "unauthedenticad"],
+	"eslint.useFlatConfig": true
 }
