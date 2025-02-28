@@ -6,7 +6,13 @@ import { Button } from '@/components/ui/button';
 import { authClient } from '@/lib/auth/auth-client';
 import { getBaseUrl } from '@/lib/utils/get-base-url';
 
-export const GithubButton = ({ disabled = false }: { disabled?: boolean }) => {
+export const GithubButton = ({
+	disabled = false,
+	redirectTo,
+}: {
+	disabled?: boolean;
+	redirectTo?: string | null;
+}) => {
 	const [loading, setLoading] = React.useState(false);
 	const { signIn } = authClient;
 
@@ -18,7 +24,7 @@ export const GithubButton = ({ disabled = false }: { disabled?: boolean }) => {
 					provider: 'github',
 					callbackURL: `${getBaseUrl({
 						relativePath: false,
-					})}`,
+					})}${redirectTo ?? ''}`,
 				});
 			}}
 			disabled={disabled}

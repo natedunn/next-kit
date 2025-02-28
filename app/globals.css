@@ -4,6 +4,7 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @plugin "tailwindcss-animate";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -173,4 +174,12 @@
 
 .no-wrap-cell {
 	white-space: nowrap;
+}
+
+.code {
+	@apply font-mono bg-popover border border-foreground/30;
+}
+
+.code-box {
+	@apply p-3 md:p-6 overflow-x-scroll;
 }

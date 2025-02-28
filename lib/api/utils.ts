@@ -1,10 +1,12 @@
 import { env } from 'process';
+import type { LoggerLinkOptions, Operation } from '@trpc/client';
+import type { AppRouter } from './routers/_app';
 
-import { loggerLink, LoggerLinkOptions, Operation } from '@trpc/client';
-
-import { AppRouter } from './routers/_app';
+import { loggerLink } from '@trpc/client';
 
 export const skipStream = (op: Operation) => {
+	// ⚠️
+	// These are paths that should not be streamed
 	const nonStreamPaths = ['user.', 'auth.', 'console.'];
 	const skipStreamLink =
 		nonStreamPaths.some((path) => op.path.includes(path)) || !!op.context.skipStream;

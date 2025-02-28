@@ -8,7 +8,9 @@ import * as auth from '../tables/auth';
 
 //
 // User
-const refineUser = {} satisfies BuildRefine<typeof auth.user>;
+const refineUser = {
+	role: () => z.enum(['member', 'admin']),
+} satisfies BuildRefine<typeof auth.user>;
 
 export const userSchema = {
 	create: createInsertSchema(auth.user, refineUser),

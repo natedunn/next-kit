@@ -12,7 +12,6 @@ import { db } from '@/lib/db';
 import { userSchema } from '../db/schema/auth';
 import { env } from '../env/server';
 
-// This is the entry point
 export const auth = betterAuth({
 	emailAndPassword: {
 		enabled: true,
@@ -29,12 +28,19 @@ export const auth = betterAuth({
 					username: profile.login,
 					email: profile.email,
 					image: profile.avatar_url,
-					role: env.ADMIN_EMAIL === profile.email ? 'admin' : 'user',
+					role: env.ADMIN_EMAIL === profile.email ? 'admin' : 'member',
 				};
 			},
 		},
 	},
-	plugins: [nextCookies(), admin(), username()],
+	plugins: [
+		nextCookies(),
+		admin({
+			defaultRole: 'member',
+			adminRole: ['admin'],
+		}),
+		username(),
+	],
 	user: {
 		additionalFields: {
 			// This purely exists to make sure the username is required

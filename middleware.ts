@@ -1,10 +1,16 @@
+import type { NextRequest } from 'next/server';
+
 import { getSessionCookie } from 'better-auth';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
+
+const authGuardUrls = ['/admin', '/authed'];
 
 export async function middleware(request: NextRequest) {
 	const sessionCookie = getSessionCookie(request);
-	if (!sessionCookie) {
-		return NextResponse.redirect(new URL('/sign-in', request.url));
+	if (!sessionCookie && authGuardUrls.includes(request.nextUrl.pathname)) {
+		return NextResponse.redirect(
+			new URL(`/sign-in?redirectTo=${request.nextUrl.pathname}`, request.url)
+		);
 	}
 	return NextResponse.next();
 }
@@ -12,7 +18,8 @@ export async function middleware(request: NextRequest) {
 export const config = {
 	// Apply middleware to specific routes
 	matcher: [
-		// For example:
-		// "/dashboard"
+		'/((?!api/|_next/|_static/|_vercel|favicon.ico|[\\w-]+\\.\\w+).*)',
+		'/admin',
+		'/authed',
 	],
 };

@@ -1,5 +1,7 @@
+import type { NextRequest } from 'next/server';
+
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
-import { NextRequest } from 'next/server';
+import consola from 'consola';
 
 import { createTRPCContext } from '@/lib/api/context';
 import { appRouter } from '@/lib/api/routers/_app';
@@ -11,8 +13,7 @@ const handler = (req: NextRequest) => {
 		router: appRouter,
 		createContext: () => createTRPCContext({ req }),
 		onError: ({ error }) => {
-			console.log('Error in tRPC handler (route.ts)');
-			console.error(error);
+			consola.error('Error in tRPC handler (route.ts):', error);
 		},
 	});
 };

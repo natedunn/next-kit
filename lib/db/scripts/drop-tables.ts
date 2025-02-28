@@ -1,19 +1,19 @@
-import { confirm } from '@inquirer/prompts';
+import { consola } from 'consola';
 import { sql } from 'drizzle-orm';
 
 import { httpDb } from '@/lib/db';
 
 export const dropTables = async () => {
-	const answer = await confirm({
-		message: 'Are you sure you want to drop all tables?',
+	const answer = await consola.prompt('Are you sure you want to drop all tables?', {
+		type: 'confirm',
 	});
 
 	if (!answer) {
-		console.log('❌ Dropping all tables cancelled');
+		consola.error('❌ Dropping all tables cancelled');
 		process.exit(0);
 	}
 
-	console.log('⏳ Dropping all tables in database...');
+	consola.start('⏳ Dropping all tables in database...');
 
 	const start = Date.now();
 
@@ -27,19 +27,19 @@ export const dropTables = async () => {
 	const tables = result.rows;
 
 	for (const table of tables) {
-		const query = sql.raw(`DROP TABLE ${table.table_name} CASCADE;`);
+		const query = sql.raw(`DROP TABLE "${table.table_name}" CASCADE;`);
 		await httpDb.execute(query);
 	}
 
 	const end = Date.now();
 
-	console.log('✅ Dropped all tables in', end - start, 'ms');
+	consola.success('Dropped all tables in', end - start, 'ms');
 
 	process.exit(0);
 };
 
 dropTables().catch((err) => {
-	console.error('❌ Dropping all tables failed');
-	console.error(err);
+	consola.error('❌ Dropping all tables failed');
+	consola.error(err);
 	process.exit(1);
 });

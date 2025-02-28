@@ -1,11 +1,14 @@
-import { text } from 'stream/consumers';
-
 import React from 'react';
 
 import { Link } from '@/components/link';
 
 export default async function HomePage() {
 	const links = [
+		{
+			text: '/start',
+			href: '/start',
+			description: () => <span>Some helpful tip and information on how to get started.</span>,
+		},
 		{
 			text: '/sign-in',
 			href: '/sign-in',
@@ -24,7 +27,17 @@ export default async function HomePage() {
 			description: () => (
 				<span>
 					View data fetched from an authed procedure. Pass data via search params. Use{' '}
-					<span className='border bg-white font-mono '>redirect=false</span> to see API error.
+					<span className='code'>redirect=false</span> to see API error.
+				</span>
+			),
+		},
+		{
+			text: '/admin',
+			href: '/admin',
+			description: () => (
+				<span>
+					View user list data fetched from an admin procedure. Only authenticated users with the
+					admin role have access.
 				</span>
 			),
 		},
@@ -35,15 +48,15 @@ export default async function HomePage() {
 			<div>
 				<h1 className='text-3xl font-bold'>next-kit by @natedunn</h1>
 				<p className='mt-2 text-muted-foreground'>
-					<span className='italic'>"Measure twice, cut once"</span>{' '}
-					<span>— Mr. Miyagi or something</span>
+					<span className='italic'>&quot;Measure twice, cut once&quot;</span>{' '}
+					<span>— Wayne Gretzky — Nate Dunn</span>
 				</p>
 			</div>
 			<div className='mt-6 pt-4 border-t'>An index of pages:</div>
 			<table className='mt-4'>
 				<tbody>
 					{links.map((link) => (
-						<tr key={link.href} className='border bg-muted'>
+						<tr key={link.href} className='border bg-muted/50'>
 							<td className='border-r px-5 py-3 font-mono no-wrap-cell'>
 								<Link className='hover:underline' href={link.href}>
 									{link.text}

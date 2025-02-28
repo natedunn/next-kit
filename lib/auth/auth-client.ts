@@ -7,5 +7,5 @@ export const authClient = createAuthClient({
 	baseURL: getBaseUrl({
 		relativePath: false,
 	}),
-	plugins: [usernameClient()],
+	plugins: [adminClient(), usernameClient()],
 });

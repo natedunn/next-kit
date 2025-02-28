@@ -3,9 +3,8 @@ import type { SearchParams } from 'nuqs/server';
 import React from 'react';
 import { redirect } from 'next/navigation';
 
-import { Link } from '@/components/link';
 import { api } from '@/lib/api/clients/invoker';
-import { auth, getAuth } from '@/lib/auth/auth';
+import { getAuth } from '@/lib/auth/auth';
 import { exampleSearchParams } from '@/lib/params/search-params';
 
 type PageProps = {
@@ -24,16 +23,18 @@ export default async function HomePage({ searchParams }: PageProps) {
 
 	return (
 		<React.Fragment>
-			<div>
+			<div className='space-y-6'>
 				<h1 className='text-3xl font-bold'>Authed Procedure</h1>
 				<p className='mt-2'>
 					Below is returned data from the authed procedure. It only returns said data if you (the
-					user) are authenticated. You may also pass a search param of{' '}
-					<span className='border bg-white font-mono text-sm'>redirect=false</span> to see the
+					user) are authenticated.
+				</p>
+				<p>
+					You may pass a search param of <span className='code'>redirect=false</span> to see the
 					unauthenticated API error.
 				</p>
 			</div>
-			<pre className='mt-6 font-mono font-bold bg-muted p-3 md:p-6 border'>
+			<pre className='mt-6 code code-box'>
 				<code>{JSON.stringify(data, null, 2)}</code>
 			</pre>
 		</React.Fragment>

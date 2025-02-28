@@ -1,7 +1,8 @@
-import { NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 
 import { getAuth } from '../auth/auth';
-import { db } from '../db';
+
+// import { db } from '../db';
 
 type CreateContextOptions = {
 	auth: Awaited<ReturnType<typeof getAuth>>;
@@ -9,7 +10,6 @@ type CreateContextOptions = {
 
 export const createInnerTRPCContext = (opts: CreateContextOptions) => {
 	return {
-		db,
 		auth: opts.auth,
 	};
 };
