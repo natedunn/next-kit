@@ -13,7 +13,8 @@ export async function middleware(request: NextRequest) {
 		request.nextUrl.searchParams.get('redirect') === 'false' &&
 		authGuardUrls.includes(request.nextUrl.pathname);
 
-	// Auth Guard
+	//
+	// Auth Guard — passes redirect searchParam to sign-in page
 	if (!sessionCookie && authGuardUrls.includes(request.nextUrl.pathname) && !bypassAuthGuard) {
 		return NextResponse.redirect(
 			new URL(`/sign-in?redirectTo=${request.nextUrl.pathname}`, request.url)
