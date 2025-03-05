@@ -7,19 +7,23 @@ const authGuardUrls = ['/admin', '/authed'];
 
 export async function middleware(request: NextRequest) {
 	const sessionCookie = getSessionCookie(request);
-	if (!sessionCookie && authGuardUrls.includes(request.nextUrl.pathname)) {
+
+	// This simply enables the `request=false` query param to bypass the auth guard
+	const bypassAuthGuard =
+		request.nextUrl.searchParams.get('redirect') === 'false' &&
+		authGuardUrls.includes(request.nextUrl.pathname);
+
+	// Auth Guard
+	if (!sessionCookie && authGuardUrls.includes(request.nextUrl.pathname) && !bypassAuthGuard) {
 		return NextResponse.redirect(
 			new URL(`/sign-in?redirectTo=${request.nextUrl.pathname}`, request.url)
 		);
 	}
+
+	// Continue
 	return NextResponse.next();
 }
 
 export const config = {
-	// Apply middleware to specific routes
-	matcher: [
-		'/((?!api/|_next/|_static/|_vercel|favicon.ico|[\\w-]+\\.\\w+).*)',
-		'/admin',
-		'/authed',
-	],
+	matcher: ['/((?!api|_next|.*\\..*|favicon.ico|robots.txt|sitemap.xml|static).*)'],
 };
