@@ -7,10 +7,9 @@ import { nextCookies } from 'better-auth/next-js';
 import { admin, username } from 'better-auth/plugins';
 import * as H from 'next/headers';
 
-import { db } from '@/lib/db';
-
-import { userSchema } from '../db/schema/auth';
-import { env } from '../env/server';
+import { db } from '@/kit/db';
+import { userSchema } from '@/lib/db/schema/auth';
+import { env } from '@/lib/env/server';
 
 export const auth = betterAuth({
 	emailAndPassword: {

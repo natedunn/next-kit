@@ -3,8 +3,8 @@ import type { SearchParams } from 'nuqs/server';
 import React from 'react';
 import { redirect } from 'next/navigation';
 
-import { api } from '@/lib/api/clients/invoker';
-import { getAuth } from '@/lib/auth/auth';
+import { api } from '@/kit/api/fetcher/invoker';
+import { getAuth } from '@/kit/auth';
 import { exampleSearchParams } from '@/lib/params/search-params';
 
 type PageProps = {

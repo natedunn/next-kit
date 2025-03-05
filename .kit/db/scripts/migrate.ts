@@ -1,7 +1,7 @@
 import consola from 'consola';
 import { migrate } from 'drizzle-orm/neon-http/migrator';
 
-import { httpDb } from '@/lib/db';
+import { httpDb } from '@/kit/db';
 
 import { setupGlobalUpdateTrigger } from './setup';
 

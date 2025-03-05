@@ -3,12 +3,11 @@ import consola from 'consola';
 import * as H from 'next/headers';
 import { NextRequest } from 'next/server';
 
-import { createInnerTRPCContext } from '@/lib/api/context';
-// import { validateAuthRequest } from "@/lib/auth/utils";
-import { t } from '@/lib/api/init';
-import { appRouter } from '@/lib/api/routers/_app';
-import { getAuth } from '@/lib/auth/auth';
-import { getBaseUrl } from '@/lib/utils/get-base-url';
+import { t } from '@/kit/api';
+import { appRouter } from '@/kit/api/app-router';
+import { createInnerTRPCContext } from '@/kit/api/context';
+import { getAuth } from '@/kit/auth';
+import { getBaseUrl } from '@/kit/utils';
 
 const createContext = cache(async () => {
 	const headers = await H.headers();

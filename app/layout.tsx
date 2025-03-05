@@ -1,14 +1,12 @@
 import type { Metadata } from 'next';
 
-import { ThemeProvider } from 'next-themes';
 import { Geist, Geist_Mono } from 'next/font/google';
-import * as H from 'next/headers';
-import { NuqsAdapter } from 'nuqs/adapters/next/app';
 
 import './globals.css';
 
-import { ApiProvider } from '@/components/api-provider';
+import { Link } from '@/components/link';
 import { MainNav } from '@/components/main-nav';
+import Providers from '@/kit/components/providers';
 
 const geistSans = Geist({
 	variable: '--font-geist-sans',
@@ -30,23 +28,31 @@ export default async function RootLayout({
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
-	const headers = new Headers(await H.headers());
-
 	return (
 		<html lang='en' suppressHydrationWarning>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-				<ThemeProvider attribute='class' defaultTheme='system'>
-					<NuqsAdapter>
-						<ApiProvider headers={headers}>
-							<div className='flex flex-col items-center justify-center min-h-screen'>
-								<div className='w-full max-w-[32rem] py-10'>
-									<MainNav />
-									<div className='mt-4'>{children}</div>
+				<Providers>
+					<div className='flex flex-col items-center justify-center min-h-screen'>
+						<div className='w-full max-w-[32rem] py-12'>
+							<MainNav />
+							<div className='mt-4'>{children}</div>
+							<div className='border-t pt-6 mt-12'></div>
+							<div className='flex items-center gap-4 justify-between'>
+								<div>
+									Made by <Link href='https://bsky.app/profile/nate.social'>natedunn</Link>
+								</div>
+								<div className='flex gap-4 items-center'>
+									<Link href='https://natedunn.net' className='link-as-text'>
+										Website
+									</Link>
+									<Link href='https://github.com/natedunn/next-kit' className='link-as-text'>
+										Github
+									</Link>
 								</div>
 							</div>
-						</ApiProvider>
-					</NuqsAdapter>
-				</ThemeProvider>
+						</div>
+					</div>
+				</Providers>
 			</body>
 		</html>
 	);

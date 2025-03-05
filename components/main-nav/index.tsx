@@ -1,4 +1,4 @@
-import { getAuth } from '@/lib/auth/auth';
+import { getAuth } from '@/kit/auth';
 
 import { ModeToggle } from '../mode-toggle';
 import { BackHome } from './back-home';

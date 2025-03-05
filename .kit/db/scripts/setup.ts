@@ -1,6 +1,6 @@
 import { sql } from 'drizzle-orm';
 
-import { httpDb } from '..';
+import { httpDb } from '@/kit/db';
 
 export async function setupGlobalUpdateTrigger() {
 	// Create the trigger function

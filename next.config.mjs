@@ -13,6 +13,11 @@ const nextConfig = {
 	experimental: {
 		reactCompiler: true,
 	},
+	modularizeImports: {
+		'@/lib/api/routers': {
+			transform: '@/lib/api/routers/{{member}}',
+		},
+	},
 };
 
 export default nextConfig;

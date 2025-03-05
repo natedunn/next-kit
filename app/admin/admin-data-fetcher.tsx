@@ -2,7 +2,7 @@
 
 import { useQuery } from '@tanstack/react-query';
 
-import { useTRPC } from '@/lib/api/clients/client';
+import { useTRPC } from '@/kit/api/fetcher/client';
 
 export const AdminDataFetcher = () => {
 	const trpc = useTRPC();

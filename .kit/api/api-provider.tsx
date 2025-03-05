@@ -1,6 +1,6 @@
 'use client';
 
-import type { AppRouter } from '@/lib/api/routers/_app';
+import type { AppRouter } from '@/kit/api/app-router';
 import type { QueryClient } from '@tanstack/react-query';
 import type { PropsWithChildren } from 'react';
 
@@ -15,11 +15,9 @@ import {
 } from '@trpc/client';
 import superjson from 'superjson';
 
-import { TRPCProvider } from '@/lib/api/clients/client';
-import { makeQueryClient } from '@/lib/api/clients/query-client';
-import { customLoggerLink, skipStream } from '@/lib/api/utils';
-
-import { getBaseUrl } from '../lib/utils/get-base-url';
+import { makeQueryClient, TRPCProvider } from '@/kit/api/fetcher/client';
+import { customLoggerLink, skipStream } from '@/kit/api/utils';
+import { getBaseUrl } from '@/kit/utils';
 
 type ClientProviderProps = PropsWithChildren<{
 	headers: Headers;

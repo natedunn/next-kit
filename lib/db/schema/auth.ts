@@ -18,4 +18,5 @@ export const userSchema = {
 	update: createUpdateSchema(auth.user, refineUser),
 	delete: createUpdateSchema(auth.user, refineUser).pick({ id: true }),
 };
+
 export type UserSchema = SchemaCrud<typeof userSchema>;

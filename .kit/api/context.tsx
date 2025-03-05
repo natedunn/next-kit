@@ -1,8 +1,6 @@
 import type { NextRequest } from 'next/server';
 
-import { getAuth } from '../auth/auth';
-
-// import { db } from '../db';
+import { getAuth } from '../auth';
 
 type CreateContextOptions = {
 	auth: Awaited<ReturnType<typeof getAuth>>;

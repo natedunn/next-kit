@@ -3,7 +3,7 @@ import type { SearchParams } from 'nuqs/server';
 import React from 'react';
 import { redirect } from 'next/navigation';
 
-import { getAuth } from '@/lib/auth/auth';
+import { getAuth } from '@/kit/auth';
 import { signInSearchParams } from '@/lib/params/search-params';
 
 import { GithubButton } from './_components/github-button';

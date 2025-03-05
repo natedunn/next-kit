@@ -1,4 +1,4 @@
-import type { AppRouter } from '@/lib/api/routers/_app';
+import type { AppRouter } from '@/kit/api';
 
 import {
 	createTRPCClient,
@@ -9,8 +9,8 @@ import {
 import * as H from 'next/headers';
 import superjson from 'superjson';
 
-import { customLoggerLink, skipStream } from '@/lib/api/utils';
-import { getBaseUrl } from '@/lib/utils/get-base-url';
+import { customLoggerLink, skipStream } from '@/kit/api/utils';
+import { getBaseUrl } from '@/kit/utils';
 
 const options = {
 	transformer: superjson,

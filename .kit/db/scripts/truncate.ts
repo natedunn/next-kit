@@ -2,7 +2,7 @@
 import consola from 'consola';
 import { sql } from 'drizzle-orm';
 
-import { httpDb } from '@/lib/db';
+import { httpDb } from '@/kit/db';
 
 export const truncate = async () => {
 	const answer = consola.prompt('Are you sure you want to truncate all tables?', {

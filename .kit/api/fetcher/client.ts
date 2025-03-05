@@ -1,5 +1,10 @@
+import type { AppRouter } from '@/kit/api/app-router';
+
 import { defaultShouldDehydrateQuery, QueryClient } from '@tanstack/react-query';
+import { createTRPCContext } from '@trpc/tanstack-react-query';
 import superjson from 'superjson';
+
+export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
 
 export function makeQueryClient() {
 	return new QueryClient({

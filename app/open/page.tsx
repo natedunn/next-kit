@@ -2,7 +2,7 @@ import type { SearchParams } from 'nuqs/server';
 
 import React from 'react';
 
-import { api } from '@/lib/api/clients/invoker';
+import { api } from '@/kit/api/fetcher/invoker';
 import { exampleSearchParams } from '@/lib/params/search-params';
 
 type PageProps = {

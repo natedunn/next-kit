@@ -1,7 +1,7 @@
 import { consola } from 'consola';
 import { sql } from 'drizzle-orm';
 
-import { httpDb } from '@/lib/db';
+import { httpDb } from '@/kit/db';
 
 export const dropTables = async () => {
 	const answer = await consola.prompt('Are you sure you want to drop all tables?', {

@@ -3,8 +3,8 @@
 import React from 'react';
 
 import { Button } from '@/components/ui/button';
-import { authClient } from '@/lib/auth/auth-client';
-import { getBaseUrl } from '@/lib/utils/get-base-url';
+import { authClient } from '@/kit/auth/client';
+import { getBaseUrl } from '@/kit/utils';
 
 export const GithubButton = ({
 	disabled = false,

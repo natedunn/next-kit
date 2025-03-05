@@ -1,7 +1,7 @@
 import { adminClient, usernameClient } from 'better-auth/client/plugins';
 import { createAuthClient } from 'better-auth/react';
 
-import { getBaseUrl } from '@/lib/utils/get-base-url';
+import { getBaseUrl } from '@/kit/utils';
 
 export const authClient = createAuthClient({
 	baseURL: getBaseUrl({

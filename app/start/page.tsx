@@ -10,6 +10,14 @@ export default async function SetupPage() {
 				<p className='mt-2'>A few things to get started.</p>
 			</div>
 			<div className='prose dark:prose-invert'>
+				<h3>Why another starter kit?</h3>
+				<p>I build a lot, but I hate recreating boilerplate code.</p>
+				<p>
+					I also wanted a separation between the boilerplate code and the actual logic that is
+					specific to application, so I moved a lot of that into the{' '}
+					<span className='code'>.kit</span> folder
+				</p>
+				<hr className='solid' />
 				<h3>Whats in the stack?</h3>
 				<ul>
 					<li>Next.js</li>
@@ -46,7 +54,7 @@ export default async function SetupPage() {
 						Enable auth by adding Github client info to <span className='code'>.env</span> file.
 					</li>
 					<li>
-						The Neon DB driver is already set up. If this is not your preferred DB provider, you
+						The Neon DB driver is pre-configured. If this is not your preferred DB provider, you
 						will need to change the{' '}
 						<Link className='link-as-text' href='https://orm.drizzle.team/docs/get-started'>
 							different driver

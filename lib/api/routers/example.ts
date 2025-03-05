@@ -1,15 +1,12 @@
-import { TRPCError } from '@trpc/server';
-import consola from 'consola';
 import { z } from 'zod';
 
-import { auth } from '@/lib/auth/auth';
-import { authClient } from '@/lib/auth/auth-client';
+import { t } from '@/kit/api';
+import { authClient } from '@/kit/auth/client';
 
-import { adminProcedure, authProcedure, openProcedure } from '../procedure';
-import { router } from '../router';
+import { procedure } from '../procedures';
 
-export const exampleRouter = router({
-	open: openProcedure.input(z.string()).query(async ({ input, ctx }) => {
+export const exampleRouter = t.router({
+	open: procedure.open.input(z.string()).query(async ({ input, ctx }) => {
 		const date = new Date();
 		return {
 			passedInput: input,
@@ -17,7 +14,7 @@ export const exampleRouter = router({
 			user: !ctx.auth.user?.email ? null : `${ctx.auth.user.email} (not required)`,
 		};
 	}),
-	authed: authProcedure.input(z.string()).query(async ({ input, ctx }) => {
+	authed: procedure.auth.input(z.string()).query(async ({ input, ctx }) => {
 		const date = new Date();
 		return {
 			passedInput: input,
@@ -25,7 +22,7 @@ export const exampleRouter = router({
 			user: `${ctx.auth.user.email} (required)`,
 		};
 	}),
-	listUsers: adminProcedure.query(async ({ ctx }) => {
+	listUsers: procedure.admin.query(async ({ ctx }) => {
 		const user = ctx.auth.user;
 
 		const { data } = await authClient.admin.listUsers({
