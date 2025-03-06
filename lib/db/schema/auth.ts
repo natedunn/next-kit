@@ -1,5 +1,5 @@
+import type { SchemaCrud } from '@/kit/db/utils';
 import type { BuildRefine } from 'node_modules/drizzle-zod/schema.types.internal.d.ts';
-import type { SchemaCrud } from '../utils';
 
 import { createInsertSchema, createSelectSchema, createUpdateSchema } from 'drizzle-zod';
 import { z } from 'zod';
