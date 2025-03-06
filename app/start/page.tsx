@@ -30,8 +30,8 @@ export default async function SetupPage() {
 					<li>Better Auth — authentication</li>
 					<li>Drizzle ORM (default driver w/ Neon DB) — Database ORM</li>
 					<li>Nuqs — search params</li>
-					<li>Shadcn ready — components</li>
 					<li>T3 Env — type-safe ENV variables</li>
+					<li>Shadcn ready — components</li>
 				</ul>
 				<hr className='solid'></hr>
 				<h3>Features</h3>
