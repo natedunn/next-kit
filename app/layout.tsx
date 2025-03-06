@@ -32,14 +32,17 @@ export default async function RootLayout({
 		<html lang='en' suppressHydrationWarning>
 			<body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
 				<Providers>
-					<div className='flex flex-col items-center justify-center min-h-screen'>
-						<div className='w-full max-w-[32rem] py-12'>
+					<div className='flex flex-col items-center px-6'>
+						<div className='w-full max-w-[32rem] md:py-12'>
 							<MainNav />
 							<div className='mt-4'>{children}</div>
 							<div className='border-t pt-6 mt-12'></div>
-							<div className='flex items-center gap-4 justify-between'>
+							<div className='flex items-center gap-4 justify-between mb-6 md:mb-0'>
 								<div>
-									Made by <Link href='https://bsky.app/profile/nate.social'>natedunn</Link>
+									Made by{' '}
+									<Link className='link-as-text' href='https://bsky.app/profile/nate.social'>
+										natedunn
+									</Link>
 								</div>
 								<div className='flex gap-4 items-center'>
 									<Link href='https://natedunn.net' className='link-as-text'>

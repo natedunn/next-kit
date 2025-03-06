@@ -21,7 +21,7 @@ export const UserOptions = ({ email }: { email?: string }) => {
 						router.refresh();
 					}}
 				>
-					Sign out ({email})
+					Sign out <span className='hidden md:inline'>({email})</span>
 				</button>
 			) : (
 				<Link className='link-as-text' href='/sign-in'>
